@@ -17,6 +17,13 @@ const setupServer = () => {
         res.json(moyo);
     });
 
+    app.patch("/api/nekomoyo/:id", async (req, res) => {
+        const id = req.params.id;
+        const moyo = req.body;
+        await moyoModel.update(id, moyo);
+        res.json(moyo);
+    });
+
     return app;
 };
 

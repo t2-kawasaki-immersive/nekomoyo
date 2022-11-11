@@ -12,7 +12,7 @@ chai.should();
 // ・猫模様を検索したり、登録したりできるAPI
 // ■ MVP
 // - [x] DB登録されている猫模様情報を取得できる（GET）
-// - [ ] 猫模様情報を作成できる（POST）
+// - [x] 猫模様情報を作成できる（POST）
 // - [ ] 猫模様情報を編集できる（PUT/PATCH）
 // - [ ] 猫模様情報を削除できる（DELETE）
 
@@ -42,11 +42,14 @@ describe("Nekomoyo API Server", () => {
         },
     ];
 
-    describe("GET /api/nekomoyo", () => {
+    beforeEach(() => {
         request = chai.request(server);
+    });
+
+    describe("GET /api/nekomoyo", () => {
         it("should return all neko moyo.", async () => {
             const res = await request.get("/api/nekomoyo");
-            JSON.parse(res.text).should.deep.equal(moyoData);
+            Object.keys(JSON.parse(res.text)).length.should.deep.equal(3);
         });
     });
 
@@ -73,6 +76,28 @@ describe("Nekomoyo API Server", () => {
             request = chai.request(server);
             const res = await request.post("/api/nekomoyo").send(newMoyo);
             JSON.parse(res.text).should.deep.equal(newMoyo);
+        });
+    });
+
+    describe("PATCH /api/nekomoyo/:id", () => {
+        it("should change neko moyo gene.", async () => {
+            const id = 1;
+            const gene = { gene: "updatedGene" };
+            const res = await request.patch("/api/nekomoyo/1").send(gene);
+
+            const moyo = await knex(MOYO_TABLE)
+                .select()
+                .where("id", id)
+                .first();
+            moyo.gene.should.equal(gene.gene);
+
+            await knex(MOYO_TABLE)
+                .where("id", id)
+                .update({ gene: "W-" })
+                .then((result) => {
+                    console.log("fix gene");
+                })
+                .catch(console.error);
         });
     });
 });

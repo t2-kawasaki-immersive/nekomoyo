@@ -33,7 +33,10 @@ module.exports = {
     },
 
     create(moyo) {
-        console.log(moyo);
         return knex(MOYO_TABLE).insert(moyo);
+    },
+
+    update(id, moyo) {
+        return knex(MOYO_TABLE).where("id", id).update(moyo);
     },
 };

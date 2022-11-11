@@ -1,0 +1,38 @@
+{
+  "name": "tech-book-info",
+  "version": "1.0.0",
+  "description": "For sharing review for technical book information",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "dev": "nodemon ./src/index.js",
+    "lint": "eslint --fix --ext .js .",
+    "test": "mocha test",
+    "migrate": "knex migrate:latest",
+    "seed": "knex seed:run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t2-kawasaki-immersive/tech-book-info.git"
+  },
+  "author": "t2-kawasaki-immersive",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/t2-kawasaki-immersive/tech-book-info/issues"
+  },
+  "homepage": "https://github.com/t2-kawasaki-immersive/tech-book-info#readme",
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
+    "eslint": "^8.27.0",
+    "mocha": "^10.1.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "knex": "^2.3.0",
+    "pg": "^8.8.0"
+  }
+}

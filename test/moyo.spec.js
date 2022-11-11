@@ -3,7 +3,7 @@ const config = require("../knexfile");
 const knex = require("knex")(config);
 const fixtures = require("./fixtures");
 const moyoModel = require("../src/moyo.model");
-const MOYO_TABLE = moyoModel.CUSTOMER_TABLE;
+const MOYO_TABLE = moyoModel.MOYO_TABLE;
 
 describe("moyo", () => {
     before(async () => {
@@ -39,6 +39,7 @@ describe("moyo", () => {
         describe("when moyo exists", () => {
             it("should get moyo by id", async () => {
                 const moyo = await moyoModel.getById(moyoFixture.id);
+                console.log(moyo);
                 expect(moyo).to.exist;
                 expect(moyo.id).to.eq(moyoFixture.id);
             });

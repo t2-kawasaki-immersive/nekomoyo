@@ -2,6 +2,9 @@ const chai = require("chai");
 const chaiHttp = require("chai-http");
 chai.use(chaiHttp);
 const { setupServer } = require("../src/server");
+const config = require("../knexfile");
+const knex = require("knex")(config);
+const MOYO_TABLE = "moyo";
 chai.should();
 
 // ここに仕様を書いていく
@@ -16,7 +19,7 @@ chai.should();
 const server = setupServer();
 
 describe("Nekomoyo API Server", () => {
-    let request = chai.request(server);
+    let request;
 
     let moyoData = [
         {
@@ -40,9 +43,36 @@ describe("Nekomoyo API Server", () => {
     ];
 
     describe("GET /api/nekomoyo", () => {
+        request = chai.request(server);
         it("should return all neko moyo.", async () => {
             const res = await request.get("/api/nekomoyo");
             JSON.parse(res.text).should.deep.equal(moyoData);
+        });
+    });
+
+    describe("POST /api/nekomoyo", () => {
+        const newMoyo = {
+            id: 999,
+            type: "brown",
+            image: "url_path",
+            gene: "wwOO(O)ss",
+        };
+
+        afterEach(async () => {
+            await knex(MOYO_TABLE)
+                .where("id", newMoyo.id)
+                .returning("id")
+                .del()
+                .then((result) => {
+                    console.log("removed test moyo");
+                })
+                .catch(console.error);
+        });
+
+        it("should create new neko moyo.", async () => {
+            request = chai.request(server);
+            const res = await request.post("/api/nekomoyo").send(newMoyo);
+            JSON.parse(res.text).should.deep.equal(newMoyo);
         });
     });
 });

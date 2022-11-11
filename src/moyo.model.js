@@ -31,4 +31,9 @@ module.exports = {
             })
             .first();
     },
+
+    create(moyo) {
+        console.log(moyo);
+        return knex(MOYO_TABLE).insert(moyo);
+    },
 };

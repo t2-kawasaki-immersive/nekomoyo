@@ -52,4 +52,31 @@ describe("moyo", () => {
             });
         });
     });
+
+    describe("create", () => {
+        const newMoyo = {
+            id: 9999,
+            type: "brown",
+            image: "url_path",
+            gene: "wwOO(O)ss",
+        };
+        afterEach(async () => {
+            await knex(MOYO_TABLE)
+                .where("id", newMoyo.id)
+                .returning("id")
+                .del()
+                .then((result) => {
+                    console.log("removed test moyo");
+                })
+                .catch(console.error);
+        });
+        it("should create new moyo", async () => {
+            await moyoModel.create(newMoyo);
+            const result = await knex(MOYO_TABLE)
+                .select()
+                .where("id", newMoyo.id)
+                .first();
+            expect(result.id).to.eq(newMoyo.id);
+        });
+    });
 });

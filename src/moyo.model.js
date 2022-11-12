@@ -39,4 +39,8 @@ module.exports = {
     update(id, moyo) {
         return knex(MOYO_TABLE).where("id", id).update(moyo);
     },
+
+    delete(id) {
+        return knex(MOYO_TABLE).where("id", id).del();
+    },
 };

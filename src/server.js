@@ -24,6 +24,12 @@ const setupServer = () => {
         res.json(moyo);
     });
 
+    app.delete("/api/nekomoyo/:id", async (req, res) => {
+        const id = req.params.id;
+        await moyoModel.delete(id);
+        res.json(id);
+    });
+
     return app;
 };
 

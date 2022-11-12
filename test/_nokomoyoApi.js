@@ -13,7 +13,7 @@ chai.should();
 // ■ MVP
 // - [x] DB登録されている猫模様情報を取得できる（GET）
 // - [x] 猫模様情報を作成できる（POST）
-// - [ ] 猫模様情報を編集できる（PUT/PATCH）
+// - [x] 猫模様情報を編集できる（PUT/PATCH）
 // - [ ] 猫模様情報を削除できる（DELETE）
 
 const server = setupServer();
@@ -96,6 +96,32 @@ describe("Nekomoyo API Server", () => {
                 .update({ gene: "W-" })
                 .then((result) => {
                     console.log("fix gene");
+                })
+                .catch(console.error);
+        });
+    });
+
+    describe("DELETE /api/nekomoyo/:id", () => {
+        it("should delete neko moyo", async () => {
+            const id = 1;
+            let moyo = await knex(MOYO_TABLE).select().where("id", id);
+            chai.expect(moyo.length).to.eq(1);
+
+            const res = await request.delete(`/api/nekomoyo/${id}`);
+
+            moyo = await knex(MOYO_TABLE).select().where("id", id);
+            chai.expect(moyo.length).to.eq(0);
+
+            await knex(MOYO_TABLE)
+                .where("id", id)
+                .insert({
+                    id: 1,
+                    type: "white",
+                    image: "url_path1",
+                    gene: "W-",
+                })
+                .then((result) => {
+                    console.log("inserted moyo for id=1");
                 })
                 .catch(console.error);
         });

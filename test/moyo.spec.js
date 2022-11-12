@@ -79,4 +79,6 @@ describe("moyo", () => {
             expect(result.id).to.eq(newMoyo.id);
         });
     });
+
+    // API側のテストと内容が重複するため、API側のみテストする。
 });

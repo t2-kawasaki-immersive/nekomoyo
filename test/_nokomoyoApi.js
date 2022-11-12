@@ -14,7 +14,7 @@ chai.should();
 // - [x] DB登録されている猫模様情報を取得できる（GET）
 // - [x] 猫模様情報を作成できる（POST）
 // - [x] 猫模様情報を編集できる（PUT/PATCH）
-// - [ ] 猫模様情報を削除できる（DELETE）
+// - [x] 猫模様情報を削除できる（DELETE）
 
 const server = setupServer();
 

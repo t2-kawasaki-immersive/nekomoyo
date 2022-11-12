@@ -11,6 +11,12 @@ const setupServer = () => {
         res.json(moyos);
     });
 
+    app.get("/api/nekomoyo/:id", async (req, res) => {
+        const id = req.params.id;
+        const moyo = await moyoModel.getById(id);
+        res.json(moyo);
+    });
+
     app.post("/api/nekomoyo", async (req, res) => {
         const moyo = req.body;
         await moyoModel.create(moyo);

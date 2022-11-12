@@ -53,6 +53,13 @@ describe("Nekomoyo API Server", () => {
         });
     });
 
+    describe("GET /api/nekomoyo/{:id}", () => {
+        it("should return neko moyo selected by id", async () => {
+            const res = await request.get("/api/nekomoyo/1");
+            JSON.parse(res.text).should.deep.equal(moyoData[0]);
+        });
+    });
+
     describe("POST /api/nekomoyo", () => {
         const newMoyo = {
             id: 999,

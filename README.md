@@ -36,19 +36,19 @@ None
 
 -   Request body
 
-```
+```json
 None
 ```
 
 -   Response
 
-```
+```json
 [
     {
         "id": 1,
         "type": "white",
         "image": "url_path1",
         "gene": "W-"
-    },
+    }
 ]
 ```

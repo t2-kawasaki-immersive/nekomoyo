@@ -36,7 +36,7 @@ None
 
 -   Request body
 
-```json
+```
 None
 ```
 
@@ -51,4 +51,159 @@ None
         "gene": "W-"
     }
 ]
+```
+
+### Get nekomoyo by ID
+
+-   URL Path
+
+```
+/nekomoyo/{:id}
+```
+
+-   Path parameters
+
+```
+id: nekomoyoID
+```
+
+-   Query parameters
+
+```
+None
+```
+
+-   Request body
+
+```
+None
+```
+
+-   Response
+
+```json
+{
+    "id": 1,
+    "type": "white",
+    "image": "url_path1",
+    "gene": "W-"
+}
+```
+
+### POST nekomoyo
+
+-   URL Path
+
+```
+/nekomoyo/{:id}
+```
+
+-   Path parameters
+
+```
+None
+```
+
+-   Query parameters
+
+```
+None
+```
+
+-   Request body
+
+```json
+{
+    "id": 99,
+    "type": "red",
+    "image": "url_path1",
+    "gene": "xxxx"
+}
+```
+
+-   Response
+
+Returned added nekomoyo.
+
+```json
+{
+    "id": 99,
+    "type": "red",
+    "image": "url_path1",
+    "gene": "xxxx"
+}
+```
+
+### PATCH nekomoyo
+
+-   URL Path
+
+```
+/nekomoyo/{:id}
+```
+
+-   Path parameters
+
+```
+id: nekomoyoID
+```
+
+-   Query parameters
+
+```
+None
+```
+
+-   Request body
+
+Specify new values in request body.
+
+```json
+{
+    "gene": "xxxx"
+}
+```
+
+-   Response
+
+*   Returned new values of nekomoyo.
+
+```json
+{
+    "gene": "xxxx"
+}
+```
+
+### DELETE nekomoyo
+
+-   URL Path
+
+```
+/nekomoyo/{:id}
+```
+
+-   Path parameters
+
+```
+id: nekomoyoID
+```
+
+-   Query parameters
+
+```
+None
+```
+
+-   Request body
+
+```
+None
+```
+
+-   Response
+
+Returned id value of deleted item.
+
+```
+1
 ```

@@ -4,7 +4,27 @@ Cat coat pattern (called "nekomoyo") API.
 An information of nekomoyo includes type and gene.
 You can alse register your favorite nokomoyo!
 
-# Usage (API Documentation)
+# Usage
+
+If you start nekomoyo api server in local, you need to clone this repo and install some packages(in npm)
+
+* Requirements
+  - npm
+  - nodejs
+
+* Install
+
+```
+npm install
+```
+
+* Start api server
+
+```
+npm run start
+```
+
+# API Document
 
 ### Base path
 
